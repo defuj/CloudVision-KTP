@@ -58,7 +58,7 @@ import java.util.List;
 import static com.google.sample.cloudvision.R.id.textJk;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyAZd7k-fadCe6J73L9pLGQ1MK7zYOBFqeU\t";
+    private static final String CLOUD_VISION_API_KEY = "YOUR_API_KEY";
     public static final String FILE_NAME = "temp.jpg";
 
     private static final String TAG = MainActivity.class.getSimpleName();
