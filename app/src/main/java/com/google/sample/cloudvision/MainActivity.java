@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             protected void onPostExecute(String result) {
-                mImageDetails.setText(result);
+//                 mImageDetails.setText(result);
                 textNo.setText("NIK :"+ary[3]);
                 textNama.setText("Nama :"+ary[4]);
                 textTtl.setText("TTL :"+ary[6]);
