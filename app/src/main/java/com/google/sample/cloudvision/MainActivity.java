@@ -53,9 +53,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static com.google.sample.cloudvision.R.id.textJk;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLOUD_VISION_API_KEY = "YOUR_API_KEY";
@@ -110,6 +109,19 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                 builder.create().show();
+                textNo.setText("");
+                textNama.setText("");
+                textTtl.setText("");
+                textJk.setText("");
+                textAlamat1.setText("");
+                textAlamat2.setText("");
+                textAlamat3.setText("");
+                textAlamat4.setText("");
+                textAgama.setText("");
+                textMasa.setText("");
+//                Arrays.fill(ary, null);
+                ary = new String[35];
+                System.out.println(ary.length);
             }
         });
 
@@ -127,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         textAgama = (TextView) findViewById(R.id.textAgama);
         textMasa = (TextView) findViewById(R.id.textBerlaku);
 
-
+    ary = new String[35];
     }
 
     public void startGalleryChooser() {
@@ -276,17 +288,98 @@ public class MainActivity extends AppCompatActivity {
             }
 
             protected void onPostExecute(String result) {
-//                 mImageDetails.setText(result);
-                textNo.setText("NIK :"+ary[3]);
-                textNama.setText("Nama :"+ary[4]);
-                textTtl.setText("TTL :"+ary[6]);
-                textJk.setText("Jenis Kelamin :"+ary[7]);
-                textAlamat1.setText("Alamat:"+ary[10]);
-                textAlamat2.setText("RT/RW :"+ary[12]);
-                textAlamat3.setText("Kelurahan :"+ary[13]);
-                textAlamat4.setText("Kota:"+ary[14]);
-                textAgama.setText("Agama :"+ary[15]);
-                textMasa.setText("Masa Berlaku :"+ary[22]);
+//                mImageDetails.setText(result); // semua data ditampilkan
+                mImageDetails.setText("Data masuk");
+
+                if (ary != null) {
+//                    textNo.setText("NIK :" + ary[3]);
+//                    textNama.setText("Nama :" + ary[4]);
+//                    textTtl.setText("TTL :" + ary[6]);
+//                    textJk.setText("Jenis Kelamin :" + ary[7]);
+//                    textAlamat1.setText("Alamat:" + ary[10]);
+//                    textAlamat2.setText("RT/RW :" + ary[12]);
+//                    textAlamat3.setText("Kelurahan :" + ary[13]);
+//                    textAlamat4.setText("Kota:" + ary[14]);
+//                    textAgama.setText("Agama :" + ary[15]);
+//                    textMasa.setText("Masa Berlaku :" + ary[22]);
+
+                    for (int i = 0; i < ary.length; i++) {
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"nik".toLowerCase()+".*")){
+                            if (!ary[i].substring(3).isEmpty()){
+                                textNo.setText("NIK :" + ary[i].substring(4).replace(" ",""));
+                            }else {
+                                textNo.setText("NIK :" + ary[i + 1].replace(" ","").replaceAll("[^\\d.]",""));
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"nama".toLowerCase()+".*")){
+                            if (!ary[i].substring(4).isEmpty()){
+                                textNama.setText("Nama :" + ary[i].substring(4));
+                            }else {
+                                textNama.setText("Nama :" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"lahir".toLowerCase()+".*")){
+                            if (!ary[i].substring(15).isEmpty()){
+                                textTtl.setText("TTL :" + ary[i].substring(15));
+                            }else {
+                                textTtl.setText("TTL :" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"kelamin".toLowerCase()+".*")){
+                            if (!ary[i].substring(13).isEmpty()){
+                                textJk.setText("Jenis Kelamin :" + ary[i].substring(13).replace("Gol Darah",""));
+                            }else {
+                                textJk.setText("Jenis Kelamin :" + ary[i + 1].replace("Gol Darah", ""));
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"alamat".toLowerCase()+".*")){
+                            if (!ary[i].substring(6).isEmpty()){
+                                textAlamat1.setText("Alamat:" + ary[i].substring(6));
+                            }else {
+                                textAlamat1.setText("Alamat:" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"rw".toLowerCase()+".*")){
+                            if (!ary[i].substring(4).isEmpty()){
+                                textAlamat2.setText("RT/RW :" + ary[i].substring(4));
+                            }else {
+                                textAlamat2.setText("RT/RW :" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"kelurah".toLowerCase()+".*")){
+                            if (!ary[i].substring(6).isEmpty()){
+                                textAlamat3.setText("Kelurahan :" + ary[i].substring(6));
+                            }else {
+                                textAlamat3.setText("Kelurahan :" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"kecamatan".toLowerCase()+".*")){
+                            if (!ary[i].substring(9).isEmpty()){
+                                textAlamat4.setText("Kecamatan:" + ary[i].substring(9));
+                            }else {
+                                textAlamat4.setText("Kecamatan:" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"gama".toLowerCase()+".*")){
+                            if (!ary[i].substring(5).isEmpty()){
+                                textAgama.setText("Agama :" + ary[i].substring(5));
+                            }else {
+                                textAgama.setText("Agama :" + ary[i + 1]);
+                            }
+                        }
+                        if (ary[i].toLowerCase().replace(" ","").matches(".*"+"berlak".toLowerCase()+".*")){
+                            if (!ary[i].substring(14).isEmpty()){
+                                textMasa.setText("Masa Berlaku :" + ary[i].substring(14));
+                            }else {
+                                textMasa.setText("Masa Berlaku :" + ary[i + 1]);
+                            }
+                        }
+                    }
+
+//                    System.out.println(nik);
+                }else{
+                    textNo.setText("DATA TIDAK TERSEDIA");
+                }
             }
         }.execute();
     }
@@ -335,9 +428,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             builder.append("nothing");
         }
-//        ary = builder.toString().split("\n");
-//        textNo.setText(result[4]);
-//        String[] res = result.split("/n");
         return builder.toString();
     }
 
